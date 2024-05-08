@@ -1,0 +1,212 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root{
+    font-size: 62.5%;
+    font-family: 'Mulish', sans-serif;
+
+    --color-primary: hsl(195, 91%, 25%); /* fundo butoes,header e footer*/
+    --color-secundary: hsl(0, 0%, 100%);
+    --header: hsl(0, 0%, 100%);
+    --primary: hsl(240, 6%, 13%); /*cor do texto*/
+    --secundary: hsl(240, 6%, 7%); /*cor tiulos e subtitulos*/
+    --colorblue: #387E96; /*cor fundo caixa de pesquisa*/
+
+    --delay: .4s;
+}
+
+body{
+    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+
+#app{
+    display: grid;
+    height: 100vh;
+}
+
+header{
+    background-color: var(--color-primary);
+    display: flex; /*coloca os itens um ao lado do outro*/
+    align-items: center; /*centraliza os itens*/
+    padding: 1.5rem 3rem;
+    gap: 3rem; /*espaço entre cada item*/
+}
+
+header form{
+    flex: 1;
+}
+
+header img{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.input-wrapper label{
+    width: 1px;
+    height: 1px;
+    overflow: hidden; /*esonde tudo oque for para fora da caixa*/
+    position: absolute;
+}
+
+.input-wrapper input{
+    width: 100%;
+    padding: 1.6rem; /*deixou a caixa de pesquisa maior*/
+    border-radius: 4px;
+    background-color: var(--colorblue);
+    border: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+::placeholder{
+    color: var(--header);
+}
+
+main{
+    background-color: var(--color-secundary);
+}
+
+main img{
+    width: 100%;
+    object-fit: cover;
+    transition: all 500ms ease-in-out;
+}
+
+h1,h2, h3{
+    color: var(--secundary);
+}
+
+.content, aside{
+    padding: 1.5rem 2.5rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.content p{
+    padding-top: 2rem;
+}
+.content h2{
+    font-size: 2.4rem;
+}
+
+h1{
+    padding-bottom: .8rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.buttons img{
+    background-color: var(--color-primary);
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    box-sizing: content-box;
+    padding: 1.2rem;
+    transition: all 1s ease-in-out;
+}
+
+.buttons img:hover{
+    transform: scale(1.5) rotate(360deg); /* scale vai fazer aumentar de tamanho e o rotate rodar 360º */
+}
+
+.artigos{
+    margin-top: 3.2rem;
+    display: flex;
+    flex-direction: column; /* deixa o display flex em coluna*/
+    gap: 3.4rem;
+}
+
+.item{
+    display: flex; /*deixou a imagem ao lado do texto*/
+    gap: 1.6rem;
+
+    animation: appear .4s var(--delay) backwards;  
+}
+
+.item img{
+    width: 15rem; /*tamanho da imagem*/
+    border-radius: .5rem;
+    aspect-ratio: 16/9; /*forma como a imagem se parece, estas vão parecer com fotos 16/9 */
+    object-fit: cover; /*se a imagem não for do tamanho adequado ela irá cobrir sem tornar feia*/
+    transition: all 1s ease-in-out;
+
+}
+
+.item img:hover, main img:hover{
+    filter: hue-rotate(10deg) contrast(100%) saturate(200%); /*muda aspecto da imagem*/
+    transform: scale(1.1);
+}
+
+.item p{
+    max-width: 25rem;
+}
+
+footer{
+    background-color: var(--color-primary);
+    padding: 1.6rem;
+    text-align: center;
+    color: var(--header);
+}
+
+@media (min-width:900px){
+    #app{
+        grid-template-areas: "HEADER HEADER HEADER"
+        "MAIN MAIN ASIDE"
+        "FOOTER FOOTER FOOTER";
+
+        gap: 4rem 3rem;
+    }
+    header{
+            grid-area: HEADER;
+        }
+
+     main{
+            grid-area: MAIN;
+            padding-left: 10rem;
+        }
+
+    aside{
+            grid-area: ASIDE;
+            padding: 0 12rem 0 3.4rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+     footer{
+            grid-area: FOOTER;
+        }
+
+    .content{
+        max-width: 100%;
+        padding: 3.2rem 0 0 0;
+
+    }
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .buttons{
+        display: flex;
+        gap: 1.2rem;
+    }
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
